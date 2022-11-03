@@ -1,0 +1,82 @@
+{
+  "cssFiles": [],
+  "dataSources": [
+    "ConData"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": true,
+  "ignore": [
+    "\\server\\Controllers\\AccountController.cs",
+    "\\server\\CustomConfiguration\\ApplicationConstants.cs"
+  ],
+  "javaScriptFiles": [],
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "VirtualLeague",
+  "namespaces": [],
+  "navigation": [
+    "Teams",
+    "FixtureTemplates",
+    "Fixture Templates",
+    "League Seasons",
+    "Virtual League Results",
+    "Match Days",
+    "Season Fixtures"
+  ],
+  "pages": [
+    "Teams",
+    "Add Team",
+    "Edit Team",
+    "FixtureTemplates",
+    "Fixture Templates",
+    "Add Fixture Template",
+    "Edit Fixture Template",
+    "League Seasons",
+    "Add League Season",
+    "Edit League Season",
+    "Virtual League Results",
+    "Add Virtual League Result",
+    "Edit Virtual League Result",
+    "Match Days",
+    "Add Match Day",
+    "Edit Match Day",
+    "Season Fixtures",
+    "Login",
+    "Register Application User",
+    "Add Application Role",
+    "Add Application User",
+    "Application Roles",
+    "Profile",
+    "Unauthorized",
+    "Edit Application User",
+    "Application Users"
+  ],
+  "port": 8000,
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "ConData",
+    "duration": 5,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "provider": "default",
+    "sessionRefresh": false,
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
+  "serverLang": "cs",
+  "serverPort": 5000,
+  "serverProject": true,
+  "serverVersion": "6",
+  "startPage": "Teams",
+  "theme": "default",
+  "title": "VirtualLeague",
+  "wasm": true
+}

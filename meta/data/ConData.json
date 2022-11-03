@@ -1,0 +1,4069 @@
+{
+  "info": {
+    "title": "ConData",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15,
+    "x-concurrency": true,
+    "x-infer-aspnet": true,
+    "x-infer-tables": true,
+    "x-infer-relations": true,
+    "x-infer-views": true,
+    "x-infer-sps": true
+  },
+  "definitions": {
+    "AspNetRole": {
+      "x-table": "dbo.AspNetRoles",
+      "resource": "AspNetRoles",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-navigation": [
+            {
+              "inversePropertyName": "AspNetRole",
+              "name": "AspNetRoleClaims",
+              "type": "AspNetRoleClaim"
+            },
+            {
+              "inversePropertyName": "AspNetRole",
+              "name": "AspNetUserRoles",
+              "type": "AspNetUserRole"
+            }
+          ]
+        },
+        "Name": {
+          "type": "string",
+          "length": 256
+        },
+        "NormalizedName": {
+          "type": "string",
+          "length": 256
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        },
+        "AspNetRoleClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetRoleClaim"
+          }
+        },
+        "AspNetUserRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserRole"
+          }
+        }
+      }
+    },
+    "AspNetRoleClaim": {
+      "x-table": "dbo.AspNetRoleClaims",
+      "resource": "AspNetRoleClaims",
+      "required": [
+        "RoleId"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "AspNetRole": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetRole"
+        },
+        "RoleId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetRoles",
+            "parentEntityType": "AspNetRole",
+            "type": "AspNetRole",
+            "principalKey": "Id",
+            "name": "AspNetRole",
+            "textProperty": "Name",
+            "navigationProperty": "AspNetRoleClaims"
+          }
+        },
+        "ClaimType": {
+          "type": "string"
+        },
+        "ClaimValue": {
+          "type": "string"
+        }
+      }
+    },
+    "AspNetUser": {
+      "x-table": "dbo.AspNetUsers",
+      "resource": "AspNetUsers",
+      "required": [
+        "Id",
+        "AccessFailedCount"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-navigation": [
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserClaims",
+              "type": "AspNetUserClaim"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserLogins",
+              "type": "AspNetUserLogin"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserRoles",
+              "type": "AspNetUserRole"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserTokens",
+              "type": "AspNetUserToken"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "SeasonFixtures",
+              "type": "SeasonFixture"
+            }
+          ]
+        },
+        "UserName": {
+          "type": "string",
+          "length": 256
+        },
+        "NormalizedUserName": {
+          "type": "string",
+          "length": 256
+        },
+        "Email": {
+          "type": "string",
+          "length": 256
+        },
+        "NormalizedEmail": {
+          "type": "string",
+          "length": 256
+        },
+        "EmailConfirmed": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "PasswordHash": {
+          "type": "string"
+        },
+        "SecurityStamp": {
+          "type": "string"
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "PhoneNumberConfirmed": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "TwoFactorEnabled": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "LockoutEnd": {
+          "type": "string",
+          "format": "date-time-offset"
+        },
+        "LockoutEnabled": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "AccessFailedCount": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Photo": {
+          "type": "string"
+        },
+        "WhatsAppNumber": {
+          "type": "string"
+        },
+        "AspNetUserClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserClaim"
+          }
+        },
+        "AspNetUserLogins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserLogin"
+          }
+        },
+        "AspNetUserRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserRole"
+          }
+        },
+        "AspNetUserTokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserToken"
+          }
+        },
+        "SeasonFixtures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeasonFixture"
+          }
+        }
+      }
+    },
+    "AspNetUserClaim": {
+      "x-table": "dbo.AspNetUserClaims",
+      "resource": "AspNetUserClaims",
+      "required": [
+        "UserId"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "UserName",
+            "navigationProperty": "AspNetUserClaims"
+          }
+        },
+        "ClaimType": {
+          "type": "string"
+        },
+        "ClaimValue": {
+          "type": "string"
+        }
+      }
+    },
+    "AspNetUserLogin": {
+      "x-table": "dbo.AspNetUserLogins",
+      "resource": "AspNetUserLogins",
+      "required": [
+        "LoginProvider",
+        "ProviderKey",
+        "UserId"
+      ],
+      "properties": {
+        "LoginProvider": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 128
+        },
+        "ProviderKey": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 128
+        },
+        "ProviderDisplayName": {
+          "type": "string"
+        },
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "UserName",
+            "navigationProperty": "AspNetUserLogins"
+          }
+        }
+      }
+    },
+    "AspNetUserRole": {
+      "x-table": "dbo.AspNetUserRoles",
+      "resource": "AspNetUserRoles",
+      "required": [
+        "UserId",
+        "RoleId"
+      ],
+      "properties": {
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-key": true,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "UserName",
+            "navigationProperty": "AspNetUserRoles"
+          }
+        },
+        "AspNetRole": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetRole"
+        },
+        "RoleId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-key": true,
+          "x-foreignKey": {
+            "parentTable": "AspNetRoles",
+            "parentEntityType": "AspNetRole",
+            "type": "AspNetRole",
+            "principalKey": "Id",
+            "name": "AspNetRole",
+            "textProperty": "Name",
+            "navigationProperty": "AspNetUserRoles"
+          }
+        }
+      }
+    },
+    "AspNetUserToken": {
+      "x-table": "dbo.AspNetUserTokens",
+      "resource": "AspNetUserTokens",
+      "required": [
+        "UserId",
+        "LoginProvider",
+        "Name"
+      ],
+      "properties": {
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-key": true,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "UserName",
+            "navigationProperty": "AspNetUserTokens"
+          }
+        },
+        "LoginProvider": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 128
+        },
+        "Name": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 128
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "DeviceCode": {
+      "x-table": "dbo.DeviceCodes",
+      "resource": "DeviceCodes",
+      "required": [
+        "UserCode",
+        "DeviceCode1",
+        "ClientId",
+        "CreationTime",
+        "Expiration",
+        "Data"
+      ],
+      "properties": {
+        "UserCode": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "DeviceCode1": {
+          "x-original-name": "DeviceCode",
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "SubjectId": {
+          "type": "string",
+          "length": 200
+        },
+        "SessionId": {
+          "type": "string",
+          "length": 100
+        },
+        "ClientId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "Description": {
+          "type": "string",
+          "length": 200
+        },
+        "CreationTime": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "Expiration": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "Data": {
+          "x-nullable": false,
+          "type": "string"
+        }
+      }
+    },
+    "FixtureGenerator": {
+      "x-view": "sp",
+      "x-table": "dbo.FixtureGenerator",
+      "x-parameters": [
+        {
+          "name": "Team1",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team2",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team3",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team4",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team5",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team6",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team7",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team8",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team9",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team10",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team11",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team12",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team13",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team14",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team15",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team16",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team17",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team18",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team19",
+          "type": "string",
+          "size": 100
+        },
+        {
+          "name": "Team20",
+          "type": "string",
+          "size": 100
+        }
+      ],
+      "resource": "FixtureGenerators",
+      "required": [
+        "TemplateID"
+      ],
+      "properties": {
+        "TemplateID": {
+          "x-key": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-virtual": true
+        },
+        "HomeTeam": {
+          "x-computed": true,
+          "type": "string",
+          "length": 100
+        },
+        "AwayTeam": {
+          "x-computed": true,
+          "type": "string",
+          "length": 100
+        }
+      }
+    },
+    "FixtureTemplate": {
+      "x-table": "dbo.FixtureTemplates",
+      "resource": "FixtureTemplates",
+      "required": [
+        "HomeTeam",
+        "AwayTeam"
+      ],
+      "properties": {
+        "TemplateID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "HomeTeam": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "AwayTeam": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        }
+      }
+    },
+    "Key": {
+      "x-table": "dbo.Keys",
+      "resource": "Keys",
+      "required": [
+        "Id",
+        "Version",
+        "Created",
+        "Algorithm",
+        "Data"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "Version": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "Created": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "Use": {
+          "type": "string",
+          "length": 450
+        },
+        "Algorithm": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "IsX509Certificate": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "DataProtected": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "Data": {
+          "x-nullable": false,
+          "type": "string"
+        }
+      }
+    },
+    "LeagueSeason": {
+      "x-table": "dbo.LeagueSeasons",
+      "resource": "LeagueSeasons",
+      "required": [
+        "SeasonName"
+      ],
+      "properties": {
+        "SeasonID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "LeagueSeason",
+              "name": "SeasonFixtures",
+              "type": "SeasonFixture"
+            },
+            {
+              "inversePropertyName": "LeagueSeason",
+              "name": "VirtualLeagueResults",
+              "type": "VirtualLeagueResult"
+            }
+          ]
+        },
+        "SeasonName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "SeasonFixtures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeasonFixture"
+          }
+        },
+        "VirtualLeagueResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VirtualLeagueResult"
+          }
+        }
+      }
+    },
+    "MatchDay": {
+      "x-table": "dbo.MatchDays",
+      "resource": "MatchDays",
+      "required": [
+        "MatchDayName"
+      ],
+      "properties": {
+        "MatchDayID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "MatchDay",
+              "name": "SeasonFixtures",
+              "type": "SeasonFixture"
+            },
+            {
+              "inversePropertyName": "MatchDay",
+              "name": "VirtualLeagueResults",
+              "type": "VirtualLeagueResult"
+            }
+          ]
+        },
+        "MatchDayName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "SeasonFixtures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeasonFixture"
+          }
+        },
+        "VirtualLeagueResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VirtualLeagueResult"
+          }
+        }
+      }
+    },
+    "PersistedGrant": {
+      "x-table": "dbo.PersistedGrants",
+      "resource": "PersistedGrants",
+      "required": [
+        "Key",
+        "Type",
+        "ClientId",
+        "CreationTime",
+        "Data"
+      ],
+      "properties": {
+        "Key": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "Type": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "SubjectId": {
+          "type": "string",
+          "length": 200
+        },
+        "SessionId": {
+          "type": "string",
+          "length": 100
+        },
+        "ClientId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "Description": {
+          "type": "string",
+          "length": 200
+        },
+        "CreationTime": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "Expiration": {
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "ConsumedTime": {
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "Data": {
+          "x-nullable": false,
+          "type": "string"
+        }
+      }
+    },
+    "SeasonFixture": {
+      "x-table": "dbo.SeasonFixtures",
+      "resource": "SeasonFixtures",
+      "required": [
+        "SeasonID",
+        "MatchDayID",
+        "HomeTeamID",
+        "AwayTeamID"
+      ],
+      "properties": {
+        "FixtureID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "LeagueSeason": {
+          "type": "object",
+          "$ref": "#/definitions/LeagueSeason"
+        },
+        "SeasonID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "LeagueSeasons",
+            "parentEntityType": "LeagueSeason",
+            "type": "LeagueSeason",
+            "principalKey": "SeasonID",
+            "name": "LeagueSeason",
+            "textProperty": "SeasonName",
+            "navigationProperty": "SeasonFixtures"
+          }
+        },
+        "MatchDay": {
+          "type": "object",
+          "$ref": "#/definitions/MatchDay"
+        },
+        "MatchDayID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "MatchDays",
+            "parentEntityType": "MatchDay",
+            "type": "MatchDay",
+            "principalKey": "MatchDayID",
+            "name": "MatchDay",
+            "textProperty": "MatchDayName",
+            "navigationProperty": "SeasonFixtures"
+          }
+        },
+        "Team": {
+          "type": "object",
+          "$ref": "#/definitions/Team"
+        },
+        "HomeTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Teams",
+            "parentEntityType": "Team",
+            "type": "Team",
+            "principalKey": "TeamID",
+            "name": "Team",
+            "textProperty": "TeamName",
+            "navigationProperty": "SeasonFixtures"
+          }
+        },
+        "Team1": {
+          "type": "object",
+          "$ref": "#/definitions/Team"
+        },
+        "AwayTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Teams",
+            "parentEntityType": "Team",
+            "type": "Team",
+            "principalKey": "TeamID",
+            "name": "Team1",
+            "textProperty": "TeamName",
+            "navigationProperty": "SeasonFixtures1"
+          }
+        },
+        "Played": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "UserName",
+            "navigationProperty": "SeasonFixtures"
+          }
+        }
+      }
+    },
+    "SeasonFixturesList": {
+      "x-view": "sp",
+      "x-table": "dbo.SeasonFixturesList",
+      "x-parameters": [
+        {
+          "name": "SeasonID",
+          "type": "integer"
+        }
+      ],
+      "resource": "SeasonFixturesLists",
+      "required": [
+        "FixtureID",
+        "SeasonID",
+        "MatchDayID",
+        "HomeTeamID",
+        "AwayTeamID",
+        "Played"
+      ],
+      "properties": {
+        "FixtureID": {
+          "x-key": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-virtual": true
+        },
+        "SeasonID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "MatchDayID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "HomeTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "AwayTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "Played": {
+          "x-nullable": false,
+          "x-precision": 1,
+          "type": "boolean"
+        }
+      }
+    },
+    "Team": {
+      "x-table": "dbo.Teams",
+      "resource": "Teams",
+      "required": [
+        "TeamName"
+      ],
+      "properties": {
+        "TeamID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Team",
+              "name": "SeasonFixtures",
+              "type": "SeasonFixture"
+            },
+            {
+              "inversePropertyName": "Team1",
+              "name": "SeasonFixtures1",
+              "type": "SeasonFixture"
+            },
+            {
+              "inversePropertyName": "Team",
+              "name": "VirtualLeagueResults",
+              "type": "VirtualLeagueResult"
+            },
+            {
+              "inversePropertyName": "Team1",
+              "name": "VirtualLeagueResults1",
+              "type": "VirtualLeagueResult"
+            }
+          ]
+        },
+        "TeamName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "SeasonFixtures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeasonFixture"
+          }
+        },
+        "VirtualLeagueResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VirtualLeagueResult"
+          }
+        }
+      }
+    },
+    "VirtualLeagueResult": {
+      "x-table": "dbo.VirtualLeagueResults",
+      "resource": "VirtualLeagueResults",
+      "required": [
+        "SeasonID",
+        "MatchDayID",
+        "HomeTeamID",
+        "HomeScore",
+        "AwayTeamID",
+        "AwayScore"
+      ],
+      "properties": {
+        "RecordID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "LeagueSeason": {
+          "type": "object",
+          "$ref": "#/definitions/LeagueSeason"
+        },
+        "SeasonID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "LeagueSeasons",
+            "parentEntityType": "LeagueSeason",
+            "type": "LeagueSeason",
+            "principalKey": "SeasonID",
+            "name": "LeagueSeason",
+            "textProperty": "SeasonName",
+            "navigationProperty": "VirtualLeagueResults"
+          }
+        },
+        "MatchDay": {
+          "type": "object",
+          "$ref": "#/definitions/MatchDay"
+        },
+        "MatchDayID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "MatchDays",
+            "parentEntityType": "MatchDay",
+            "type": "MatchDay",
+            "principalKey": "MatchDayID",
+            "name": "MatchDay",
+            "textProperty": "MatchDayName",
+            "navigationProperty": "VirtualLeagueResults"
+          }
+        },
+        "Team": {
+          "type": "object",
+          "$ref": "#/definitions/Team"
+        },
+        "HomeTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Teams",
+            "parentEntityType": "Team",
+            "type": "Team",
+            "principalKey": "TeamID",
+            "name": "Team",
+            "textProperty": "TeamName",
+            "navigationProperty": "VirtualLeagueResults"
+          }
+        },
+        "HomeScore": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "Team1": {
+          "type": "object",
+          "$ref": "#/definitions/Team"
+        },
+        "AwayTeamID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Teams",
+            "parentEntityType": "Team",
+            "type": "Team",
+            "principalKey": "TeamID",
+            "name": "Team1",
+            "textProperty": "TeamName",
+            "navigationProperty": "VirtualLeagueResults1"
+          }
+        },
+        "AwayScore": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/AspNetRoles": {
+      "get": {
+        "operationId": "getAspNetRoles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetRole"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetRole",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoleClaims": {
+      "get": {
+        "operationId": "getAspNetRoleClaims",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetRoleClaim"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRoleClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUsers": {
+      "get": {
+        "operationId": "getAspNetUsers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUser"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUser",
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserClaims": {
+      "get": {
+        "operationId": "getAspNetUserClaims",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserClaim"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserLogins": {
+      "get": {
+        "operationId": "getAspNetUserLogins",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserLogin"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserLogin",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserRoles": {
+      "get": {
+        "operationId": "getAspNetUserRoles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserRole"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserRole",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserTokens": {
+      "get": {
+        "operationId": "getAspNetUserTokens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserToken"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserToken",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserToken",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DeviceCodes": {
+      "get": {
+        "operationId": "getDeviceCodes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DeviceCode"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDeviceCode",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DeviceCode",
+            "schema": {
+              "$ref": "#/definitions/DeviceCode"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DeviceCode"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FixtureGeneratorsFunc(Team1='{Team1}',Team2='{Team2}',Team3='{Team3}',Team4='{Team4}',Team5='{Team5}',Team6='{Team6}',Team7='{Team7}',Team8='{Team8}',Team9='{Team9}',Team10='{Team10}',Team11='{Team11}',Team12='{Team12}',Team13='{Team13}',Team14='{Team14}',Team15='{Team15}',Team16='{Team16}',Team17='{Team17}',Team18='{Team18}',Team19='{Team19}',Team20='{Team20}')": {
+      "get": {
+        "operationId": "getFixtureGenerators",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Team1",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team2",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team3",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team4",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team5",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team6",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team7",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team8",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team9",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team10",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team11",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team12",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team13",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team14",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team15",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team16",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team17",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team18",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team19",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Team20",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/FixtureGenerator"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FixtureTemplates": {
+      "get": {
+        "operationId": "getFixtureTemplates",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/FixtureTemplate"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFixtureTemplate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "FixtureTemplate",
+            "schema": {
+              "$ref": "#/definitions/FixtureTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/FixtureTemplate"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Keys": {
+      "get": {
+        "operationId": "getKeys",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Key"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createKey",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Key",
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/LeagueSeasons": {
+      "get": {
+        "operationId": "getLeagueSeasons",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/LeagueSeason"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLeagueSeason",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "LeagueSeason",
+            "schema": {
+              "$ref": "#/definitions/LeagueSeason"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/LeagueSeason"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/MatchDays": {
+      "get": {
+        "operationId": "getMatchDays",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/MatchDay"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createMatchDay",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "MatchDay",
+            "schema": {
+              "$ref": "#/definitions/MatchDay"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/MatchDay"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/PersistedGrants": {
+      "get": {
+        "operationId": "getPersistedGrants",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/PersistedGrant"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPersistedGrant",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "PersistedGrant",
+            "schema": {
+              "$ref": "#/definitions/PersistedGrant"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/PersistedGrant"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/SeasonFixtures": {
+      "get": {
+        "operationId": "getSeasonFixtures",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/SeasonFixture"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSeasonFixture",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "SeasonFixture",
+            "schema": {
+              "$ref": "#/definitions/SeasonFixture"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/SeasonFixture"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/SeasonFixturesListsFunc(SeasonID={SeasonID})": {
+      "get": {
+        "operationId": "getSeasonFixturesLists",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SeasonID",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/SeasonFixturesList"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Teams": {
+      "get": {
+        "operationId": "getTeams",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Team"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTeam",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Team",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VirtualLeagueResults": {
+      "get": {
+        "operationId": "getVirtualLeagueResults",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VirtualLeagueResult"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createVirtualLeagueResult",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "VirtualLeagueResult",
+            "schema": {
+              "$ref": "#/definitions/VirtualLeagueResult"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/VirtualLeagueResult"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoles('{Id}')": {
+      "delete": {
+        "operationId": "deleteAspNetRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetRoleById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoleClaims({Id})": {
+      "delete": {
+        "operationId": "deleteAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetRoleClaimById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "AspNetRoleClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUsers('{Id}')": {
+      "delete": {
+        "operationId": "deleteAspNetUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUser",
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserClaims({Id})": {
+      "delete": {
+        "operationId": "deleteAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserClaimById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserLogins(LoginProvider='{LoginProvider}',ProviderKey='{ProviderKey}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserLoginByLoginProviderAndProviderKey",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserLogin",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserRoles(UserId='{UserId}',RoleId='{RoleId}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserRoleByUserIdAndRoleId",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserTokens(UserId='{UserId}',LoginProvider='{LoginProvider}',Name='{Name}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserTokenByUserIdAndLoginProviderAndName",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserToken",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DeviceCodes('{UserCode}')": {
+      "delete": {
+        "operationId": "deleteDeviceCode",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDeviceCodeByUserCode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "UserCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DeviceCode"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDeviceCode",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserCode",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "DeviceCode",
+            "schema": {
+              "$ref": "#/definitions/DeviceCode"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/FixtureTemplates({TemplateID})": {
+      "delete": {
+        "operationId": "deleteFixtureTemplate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TemplateID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getFixtureTemplateByTemplateID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TemplateID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/FixtureTemplate"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateFixtureTemplate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TemplateID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "FixtureTemplate",
+            "schema": {
+              "$ref": "#/definitions/FixtureTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Keys('{Id}')": {
+      "delete": {
+        "operationId": "deleteKey",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getKeyById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateKey",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Key",
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/LeagueSeasons({SeasonID})": {
+      "delete": {
+        "operationId": "deleteLeagueSeason",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SeasonID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getLeagueSeasonBySeasonID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "SeasonID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/LeagueSeason"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateLeagueSeason",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SeasonID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "LeagueSeason",
+            "schema": {
+              "$ref": "#/definitions/LeagueSeason"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/MatchDays({MatchDayID})": {
+      "delete": {
+        "operationId": "deleteMatchDay",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "MatchDayID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getMatchDayByMatchDayID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "MatchDayID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/MatchDay"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateMatchDay",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "MatchDayID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "MatchDay",
+            "schema": {
+              "$ref": "#/definitions/MatchDay"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/PersistedGrants('{Key}')": {
+      "delete": {
+        "operationId": "deletePersistedGrant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Key",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPersistedGrantByKey",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Key",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PersistedGrant"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePersistedGrant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Key",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "PersistedGrant",
+            "schema": {
+              "$ref": "#/definitions/PersistedGrant"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/SeasonFixtures({FixtureID})": {
+      "delete": {
+        "operationId": "deleteSeasonFixture",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "FixtureID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSeasonFixtureByFixtureID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "FixtureID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SeasonFixture"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateSeasonFixture",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "FixtureID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "SeasonFixture",
+            "schema": {
+              "$ref": "#/definitions/SeasonFixture"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Teams({TeamID})": {
+      "delete": {
+        "operationId": "deleteTeam",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TeamID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTeamByTeamID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TeamID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTeam",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TeamID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Team",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VirtualLeagueResults({RecordID})": {
+      "delete": {
+        "operationId": "deleteVirtualLeagueResult",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "RecordID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getVirtualLeagueResultByRecordID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RecordID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/VirtualLeagueResult"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateVirtualLeagueResult",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "RecordID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "VirtualLeagueResult",
+            "schema": {
+              "$ref": "#/definitions/VirtualLeagueResult"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/ConData",
+  "host": "localhost:5001",
+  "schemes": [
+    "https"
+  ]
+}

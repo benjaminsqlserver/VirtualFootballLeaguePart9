@@ -1,0 +1,410 @@
+{
+  "access": [
+    "Everybody"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "action": "account/register",
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "userName",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "userName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.Name}"
+                            },
+                            {
+                              "component": "userName",
+                              "name": "EmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Email is required",
+                              "type": "required-validator"
+                            },
+                            {
+                              "component": "userName",
+                              "name": "emailValidator0",
+                              "text": "Please Enter valid Email",
+                              "type": "email-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Password",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "password",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.Password}"
+                            },
+                            {
+                              "component": "Password",
+                              "name": "PasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Password is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Confirm password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.ConfirmPassword}"
+                            },
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "compareValidator0",
+                              "text": "The Passwords You Entered Do Not Match",
+                              "type": "compare-validator",
+                              "value": "${user.Password}"
+                            },
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "ConfirmPassword is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "FirstName",
+                              "name": "label0",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "First Name",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col0",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "FirstName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.FirstName}"
+                            },
+                            {
+                              "component": "FirstName",
+                              "name": "requiredValidator0",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "First Name is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LastName",
+                              "name": "label1",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Last Name",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col2",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "LastName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.LastName}"
+                            },
+                            {
+                              "component": "LastName",
+                              "name": "requiredValidator1",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Last Name is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "WhatsappNumber",
+                              "name": "label2",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Whatsapp Number",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "WhatsappNumber",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.WhatsAppNumber}"
+                            }
+                          ],
+                          "name": "col5",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row2",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "fldPhoto",
+                              "name": "label3",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Photo",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "fldPhoto",
+                              "type": "file-input",
+                              "value": "${user.Photo}"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "name": "button0",
+                              "text": "Register",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "name": "button1",
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col8",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${user}",
+                  "itemType": "ApplicationUser",
+                  "method": "post",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${user != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "user",
+        "type": "set",
+        "value": "new ApplicationUser();",
+        "valueType": "ApplicationUser"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Register Application User"
+}
